@@ -182,7 +182,6 @@ def remove_flat_padding(X, y_true, y_pred, pad=0):
 
 def remove_seq_padding(X, y_true, y_pred, pad=0):
     """Remove padding predictions from list of sequences"""
-    print(X, y_true, y_pred, pad)
     new_true = []
     new_pred = []
     for sent_idx in range(len(X)):
@@ -190,8 +189,8 @@ def remove_seq_padding(X, y_true, y_pred, pad=0):
         pred_sent = []
         for tok_idx in range(len(X[sent_idx])):
             if X[sent_idx][tok_idx] != pad:
-                true_sent.append(y_true[sent_idx][tok_idx])
-                pred_sent.append(y_pred[sent_idx][tok_idx])
+                true_sent.append(y_true[sent_idx])
+                pred_sent.append(y_pred[sent_idx])
         new_true.append(true_sent)
         new_pred.append(pred_sent)
     return np.array(new_true), np.array(new_pred)
